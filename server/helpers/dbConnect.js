@@ -14,7 +14,7 @@ export const connectSync = () => {
             () => console.log('connected to db')
         )
         .catch(
-            err => console.log("Connection to MongoDB has faild ", err.message)
+            err => console.log("Connection to MongoDB has failed ", err.message)
     );
     
     // it waits for the promise to be evaluated ...
@@ -31,7 +31,7 @@ export const connectDB = async() => {
 
     }
     catch (error) {
-        console.log("Connection to MongoDB has faild ", error.message);
+        console.log("Connection to MongoDB has failed ", error.message);
     }
     
 }

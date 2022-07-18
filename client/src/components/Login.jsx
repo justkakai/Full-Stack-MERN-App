@@ -15,7 +15,7 @@ const Login = () => {
         })
         const data = await response.json()
     
-        return data
+        return data;
     }
 
     const handleChange = (e) => {

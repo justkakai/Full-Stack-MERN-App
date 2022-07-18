@@ -8,8 +8,8 @@ import { createToken } from '../helpers/createToken.js';
  * 
  * @param {Request} req 
  * @param {Response} res 
- * @returns {void}
- * @desc registiration request controller
+ * @returns {Response} returns a response
+ * @desc registration request controller
  */
 export const signup = async (req, res) => {
     const { email, password, confirmPassword, username } = req.body;
@@ -29,16 +29,17 @@ export const signup = async (req, res) => {
         });
 
         // creating a token
-       const token = createToken({
+        const token = createToken({
             username,
-            id:Id
+            id: Id
         });
 
-        res.status(200).json({savedUser, token});
+        res.status(200).json({ savedUser, token });
     } catch (err) {
         res.status(500).json({
             message: "something went wrong",
-            error : err.message });
+            error: err.message
+        });
     }
 }
 
@@ -56,8 +57,8 @@ export const signin = async (req, res) => {
         const existingUser = await User.findOne({ email });
         if (!existingUser) return res.status(404).json({ message: "Wrong sign in data" });
         const isPasswordCorrect = await bcrypt.compare(password, existingUser.password);
-        if(!isPasswordCorrect)  return res.status(404).json({ message: "Wrong sign in data" });
-        
+        if (!isPasswordCorrect) return res.status(404).json({ message: "Wrong sign in data" });
+
         const token = createToken({
             username: existingUser.username,
             id: existingUser.id
@@ -66,8 +67,8 @@ export const signin = async (req, res) => {
         res.status(200).json({
             token,
             user: {
-                 username: existingUser.username,
-                 id: existingUser.id
+                username: existingUser.username,
+                id: existingUser.id
             }
         })
     } catch (err) {
