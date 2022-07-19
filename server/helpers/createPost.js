@@ -1,4 +1,3 @@
-// const { default: mongoose } = require('mongoose');
 import Post from "../models/Post.js";
 
 /**
@@ -7,7 +6,7 @@ import Post from "../models/Post.js";
  */
 
 const createPost = async (newPost) => {
-    const post = await Post.create(newPost); 
+    const post = await Post.create(newPost);
     return post;
 }
 

@@ -12,7 +12,7 @@ export const auth = async (req, res, next) => {
         await jwt.verify(token, process.env.SECRET, (err, payload) => {
             // if (err) throw new Error('token not verified');
             if (err) throw err;
-            req.userId = payload.id;
+            req.user = payload;
             next();
         });
     } catch (err) {

@@ -78,3 +78,15 @@ export const signin = async (req, res) => {
         });
     }
 }
+
+/* 
+{
+    "email": "trying@gmail.com",
+    "password": "!muggle"
+} 
+
+{
+    "email": "claude@outlook.com",
+    "password": "3456w"
+}
+*/
