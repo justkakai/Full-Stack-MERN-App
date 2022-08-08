@@ -2,19 +2,17 @@ import { useState } from 'react';
 
 const Registration = () => {
 
-    const URL = "http://localhost:8002"
-
     const [values, setValues] = useState({ username: "", email: "", password: "", confirmPassword: "" })
     const [success, setSuccess] = useState(false)
 
     const registerUser = async (userData) => {
-        const response = await fetch(`${URL}/user/signup`, {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/user/signup`, {
             method: "POST",
             body: JSON.stringify(userData),
             headers: { "Content-Type": "application/json" }
         })
-        const data = await response.json()
-
+        const data = await response.json();
+        console.log(data);
         return data;
     }
 
@@ -22,7 +20,7 @@ const Registration = () => {
         const inputValue = e.target.value
         const inputName = e.target.name
 
-        setValues((val) => ({ ...val, [inputName]: inputValue }))
+        setValues((val) => ({ ...val, [inputName]: inputValue }));
     }
 
     const handleSubmit = (e) => {
